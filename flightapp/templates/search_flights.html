@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Search Flight
+{% endblock title %}
+
+
+{% block content %}
+
+<!-- Search Flights Form -->
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card bg-secondary text-light">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Search Flights</h5>
+            <form method="GET" action="{% url 'search_flights' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="departure_airport">Departure Airport</label>
+                    {{ form.departure_airport }}
+                </div>
+                <div class="form-group">
+                    <label for="destination_airport">Destination Airport</label>
+                    {{ form.destination_airport }}
+                </div>
+                <div class="form-group">
+                    <label for="departure_date">Departure Date</label>
+                    {{ form.departure_date }}
+                </div>
+                <div class="form-group">
+                    <label for="departure_time_range">Departure Time Range</label>
+                    {{ form.departure_time_range }}
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Search Flights</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  
+
+{% endblock content %}
