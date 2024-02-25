@@ -32,12 +32,14 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'flightapp',
 ]
 
@@ -76,42 +78,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "railway",
+#         "USER": "postgres",
+#         "PASSWORD": "DbbBbgc2D5D54GcA6eeFAD5BC-F6EaD3",
+#         "HOST": 'roundhouse.proxy.rlwy.net',
+#         'PORT': 17762,
+#     }
+# }
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "railway",
-        "USER": "postgres",
-        "PASSWORD": "DbbBbgc2D5D54GcA6eeFAD5BC-F6EaD3",
-        "HOST": 'roundhouse.proxy.rlwy.net',
-        'PORT': 17762,
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mongo',
-#         'NAME': 'test',  # Replace 'your_database_name' with the name of your MongoDB database
-#         'ENFORCE_SCHEMA': False,  # Set to False if you want to use MongoDB's dynamic schema
-#         'CLIENT': {
-#             'host': 'monorail.proxy.rlwy.net',  # Replace 'your_mongodb_host' with the host of your MongoDB instance
-#             'port': 33431,  # Replace 'your_mongodb_port' with the port of your MongoDB instance
-#             'username': 'mongo',  # Replace 'your_mongodb_username' with your MongoDB username
-#             'password': 'cG4beBDBhGgABghDh3bF5hBbdHFBGga3',  # Replace 'your_mongodb_password' with your MongoDB password
-#             'authSource': 'mongo',  # Replace 'your_authentication_database' with your MongoDB authentication database
-#             'authMechanism': 'SCRAM-SHA-1',  # Authentication mechanism (e.g., 'SCRAM-SHA-1', 'SCRAM-SHA-256')
-#         }
-#     }
-# }
-
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation

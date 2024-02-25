@@ -2,92 +2,95 @@
 
 
 {% block title %}
-Flights
+Dashboard
 {% endblock title %}
 
 
 {% block content %}
-<!-- Navbar -->
-<div class="card-header bg-secondary">
-  <ul class="nav">
-    {% if user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link text-light" href="{% url 'logout' %}">Logout</a>
-      </li>
-    {% else %}
-      <li class="nav-item">
-        <a class="nav-link text-light" href="{% url 'login' %}">Login</a>
-      </li>
-    {% endif %}
-  </ul>
-</div>
-
-<!-- User Details -->
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card bg-dark">
-        <div class="card-header alert alert-success">
-          <b>{{ user.username|title }}</b>
-        </div>
-        <!-- Add any additional user details here -->
-      </div>
+<div class="bg-dark">
+  <!-- Navbar -->
+  <div class="card-header bg-secondary">
+    <ul class="nav">
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'logout' %}">Logout</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'login' %}">Login</a>
+        </li>
+      {% endif %}
+    </ul>
+    <div class="card-header alert alert-success container">
+      <b>{{ user.username|title }}</b>
     </div>
   </div>
-</div>
 
-<!-- Search Flights Form -->
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card bg-secondary text-light">
-        <div class="card-body">
-          <h5 class="card-title mb-4">Search Flights</h5>
-          <!-- Form fields go here -->
-          <a href="{% url 'search_flights' %}" class="btn btn-primary">Go to Search</a>
+  <!-- User Details -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card bg-dark">
+
+          <!-- Add any additional user details here -->
         </div>
       </div>
     </div>
   </div>
-</div>
 
-
-
-
-
-<!-- Flight Bookings -->
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card bg-info">
-        <div class="container text-center text-warning bg-dark p-2">
-          <h3><strong><u>My Flight Bookings</u></strong></h3>
-        </div>
-        <div class="w3-content w3-margin-top">
-          <div class="alert alert-success" role="alert">
-            <hr>
-            {% if bookings %}
-              {% for booking in bookings %}
-                <div class="card m-3">
-                  <div class="card-header">
-                    Booking ID: {{ booking.id }}
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Flight: {{ booking.flight }}</li>
-                    <li class="list-group-item">Date: {{ booking.date }}</li>
-                    <!-- Add other booking details as needed -->
-                  </ul>
-                </div>
-              {% endfor %}
-            {% else %}
-              <p>No bookings found.</p>
-            {% endif %}
+  <!-- Search Flights Form -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card text-dark">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Search Flights</h5>
+            <!-- Form fields go here -->
+            <a href="{% url 'search_flights' %}" class="btn btn-primary">Go to Search</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+
+
+
+
+  <!-- Flight Bookings -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-info">
+          <div class="container text-center text-light bg-dark p-2">
+            <h3><strong><u>My Flight Bookings</u></strong></h3>
+          </div>
+          <div class="w3-content w3-margin-top">
+            <div class="alert alert-success" role="alert">
+              <hr>
+              {% if bookings %}
+                {% for booking in bookings %}
+                  <div class="card m-3">
+                    <div class="card-header">
+                    <!-- {{ loop.id}} -->
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Flight: {{ booking.flight }}</li>
+                      <li class="list-group-item">Date: {{ booking.date }}</li>
+                      <!-- Add other booking details as needed -->
+                    </ul>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <p>No bookings found.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 {% endblock content %}

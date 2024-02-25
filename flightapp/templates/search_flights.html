@@ -9,12 +9,12 @@ Search Flight
 {% block content %}
 
 <!-- Search Flights Form -->
-<div class="container mt-5">
-    <div class="row">
+<div class="container-fluid mt-5">
+    <div class="row alert alert-success">
       <div class="col-md-6 offset-md-3">
-        <div class="card bg-secondary text-light">
-          <div class="card-body">
-            <h5 class="card-title mb-4">Search Flights</h5>
+        <div class="card text-light">
+          <div class="card-body alert-success m-2">
+            <h5 class="card-title mb-4 text-dark">Search Flights</h5>
             <form method="GET" action="{% url 'search_flights' %}">
                 {% csrf_token %}
                 <div class="form-group">
@@ -36,6 +36,23 @@ Search Flight
                 <button type="submit" class="btn btn-primary mr-2">Search Flights</button>
             </form>
           </div>
+        </div>
+        <br>
+
+        <div class="card p-4 alert-success">
+          <div class="card-header">
+            <h5 class="card-title m-4 text-dark">All Available Flights</h5>
+          </div>
+          {% for flight in allflights %}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Flight: {{ flight.departure_datetime }}</li>
+            <li class="list-group-item">Departure : {{ flight.origin }}</li>
+            <li class="list-group-item">Destination : {{ flight.destination }}</li>
+            <li class="list-group-item">Available Seats: {{ flight.available_seats }}</li>
+          </ul>
+          <br>
+          {% endfor %}
+
         </div>
       </div>
     </div>

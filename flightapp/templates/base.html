@@ -11,7 +11,7 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>POLL | {% block title %} {% endblock title %}</title>
+    <title>Assignment | {% block title %} {% endblock title %}</title>
   </head>
   <body>
                                   <!-- header section  -->
@@ -35,38 +35,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
 
-<script>
-  const pollhere = document.querySelector('.pollhere');
-  pollbtn.addEventListener('click', ()=>{
-  axios.get('/pollview/')
-  .then((resp)=>{
-    pollhere.innerHTML = resp.data
-  })
-  .catch((err)=>{
-    console.log(err)
-    })
-  })
-
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Show/hide return options based on trip type selection
-  const tripTypeRadio = document.querySelectorAll('input[name="trip_type"]');
-  const returnOptions = document.getElementById('return_options');
-  const returnTimeRange = document.getElementById('return_time_range');
-
-  tripTypeRadio.forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      if (this.value === 'return') {
-        returnOptions.style.display = 'block';
-        returnTimeRange.style.display = 'block';
-      } else {
-        returnOptions.style.display = 'none';
-        returnTimeRange.style.display = 'none';
-      }
-    });
-  });
-});
-</script>
 
 </script>
 

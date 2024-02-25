@@ -93,8 +93,10 @@ def dashboard(request):
 class SearchFlightsView(View):
     def get(self, request):
         form = FlightSearchForm(request.GET)
-        try:
-            if form.is_valid():
+        context = {'form': form}
+        
+        if form.is_valid():
+            try:
                 date = form.cleaned_data['departure_date']
                 time = form.cleaned_data['departure_time_range']
                 time_ranges = {
@@ -103,18 +105,25 @@ class SearchFlightsView(View):
                     'evening': ('18:00:00', '23:59:59'),
                 }
                 start_time, end_time = time_ranges.get(time, (None, None))
+                
                 if start_time and end_time:
-                    flights = Flight.objects.filter(departure_datetime__date=date, departure_datetime__time__gte=start_time, departure_datetime__time__lte=end_time)
+                    flights = Flight.objects.filter(
+                        departure_datetime__date=date,
+                        departure_datetime__time__gte=start_time,
+                        departure_datetime__time__lte=end_time
+                    )
                     if flights.exists():
                         return render(request, 'flight_list.html', {'flights': flights})
                     else:
                         messages.warning(request, "No flights available for the selected date and time range.")
                 else:
                     messages.error(request, "Invalid time range selected.")
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-            return HttpResponseServerError("Internal Server Error")
-        return render(request, 'search_flights.html', {'form': form})
+            except Exception as e:
+                messages.error(request, f"An error occurred: {str(e)}")
+                return HttpResponseServerError("Internal Server Error")
+        
+        context['allflights'] = Flight.objects.all()
+        return render(request, 'search_flights.html', context)
 
 class BookFlightView(LoginRequiredMixin, View):
     def post(self, request, flight_id):
